@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dashboard Quântico — Cronograma de Estudos & Diário de Manifestação</title>
+  <meta name="description" content="Template moderno para organizar seus estudos sobre física quântica, Hermetismo, Lei da Atração, V.A.V.I e práticas de manifestação. Cronograma de 8 semanas, diário diário, controle de hábitos e painel de manifestações." />
+  <meta name="keywords" content="física quântica, lei da atração, hermetismo, V.A.V.I, diário quântico, manifestação, cronograma de estudos, produtividade, Notion template" />
+  <link rel="canonical" href="https://example.com/quantum-studies-dashboard">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dashboard Quântico — Cronograma de Estudos & Diário de Manifestação" />
+  <meta property="og:description" content="Template moderno para organizar seus estudos sobre física quântica, Hermetismo, Lei da Atração e práticas de manifestação com rotina diária e rastreador de hábitos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Structured data (JSON-LD) -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"Dashboard Quântico","description":"Template moderno para organizar estudos sobre física quântica, Hermetismo e manifestação.","inLanguage":"pt-BR"}
+  </script>
+
+  <!-- Modern minimal CSS -->
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c5cff; --glass:rgba(255,255,255,0.04);
+      --glass-2:rgba(255,255,255,0.02); --radius:14px; --gap:18px;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071021 0%, #071024 60%);color:#e6eef8}
+    a{color:var(--accent)}
+    header{padding:28px 36px;display:flex;align-items:center;gap:18px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#34d1bf);display:flex;align-items:center;justify-content:center;font-weight:700;color:#051025}
+    .title{font-size:20px;font-weight:700}
+    .subtitle{color:var(--muted);font-size:13px}
+
+    .container{max-width:1100px;margin:22px auto;padding:20px}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:var(--gap)}
+
+    .card{background:linear-gradient(180deg,var(--card), rgba(11,18,32,0.7));padding:18px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(2,6,23,0.6);}
+    .card h2{margin:0 0 8px 0;font-size:16px}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* checklist */
+    .checklist{display:grid;gap:10px}
+    .week{background:var(--glass);padding:12px;border-radius:10px}
+    .task{display:flex;align-items:center;gap:12px}
+    .task input[type=checkbox]{width:18px;height:18px}
+    .task label{font-size:14px}
+
+    /* diary */
+    form .row{display:flex;gap:12px}
+    input[type=text],textarea,select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    textarea{min-height:90px;resize:vertical}
+    .actions{display:flex;gap:8px;align-items:center}
+    button{background:var(--accent);color:#051025;padding:10px 12px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent)}
+
+    /* habits table */
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:8px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.03);font-size:13px}
+
+    /* responsive */
+    @media (max-width:1000px){.grid{grid-template-columns:1fr;}.container{padding:12px}}
+
+    /* small helpers */
+    .mini{font-size:12px;color:var(--muted)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--glass-2);font-size:13px}
+
+    /* saves */
+    .top-actions{display:flex;gap:10px;margin-left:auto}
+
+    footer{margin-top:18px;padding:20px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" aria-hidden>Q</div>
+    <div>
+      <div class="title">Dashboard Quântico — Estudos & Manifestação</div>
+      <div class="subtitle">Cronograma moderno, diário, rastreador de hábitos e painel de manifestações</div>
+    </div>
+    <div class="top-actions" style="margin-left:auto">
+      <button id="exportBtn" title="Exportar dados">Exportar</button>
+      <button id="importBtn" class="ghost" title="Importar (JSON)">Importar</button>
+      <button id="clearBtn" class="ghost" title="Limpar tudo">Limpar</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <!-- main column -->
+      <section>
+        <div class="card" role="region" aria-labelledby="cronograma-title">
+          <h2 id="cronograma-title">Cronograma de Estudos — 8 Semanas</h2>
+          <p class="muted">Siga a progressão semanal. Marque as tarefas concluídas.</p>
+
+          <div class="checklist" id="checklist">
+            <!-- weeks populated by JS -->
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card" role="region" aria-labelledby="diario-title">
+          <h2 id="diario-title">Diário Quântico — Registro Diário</h2>
+          <p class="muted">Registre insights, vibração, sinais e intenções (salvo localmente no seu navegador).</p>
+
+          <form id="diaryForm">
+            <div class="row">
+              <input type="text" id="diaryDate" aria-label="Data" required />
+            </div>
+            <div class="row" style="margin-top:10px">
+              <textarea id="diaryStudy" placeholder="O que estudei hoje..."></textarea>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+              <input type="text" id="diaryInsight" placeholder="Insight principal" />
+              <input type="text" id="diaryVibe" placeholder="Vibração dominante (ex.: gratidão)" />
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+              <input type="text" id="diaryManifest" placeholder="O que manifestei hoje" />
+              <input type="text" id="diarySigns" placeholder="Sinais do universo" />
+            </div>
+            <div style="margin-top:10px">
+              <input type="text" id="diaryIntent" placeholder="Intenção para amanhã" />
+            </div>
+
+            <div class="actions" style="margin-top:12px">
+              <button type="submit">Salvar Entrada</button>
+              <button type="button" id="addQuick" class="ghost">Salvar Rápido (3 linhas)</button>
+            </div>
+          </form>
+
+          <div style="margin-top:14px">
+            <h3 style="margin:6px 0">Entradas Recentes</h3>
+            <div id="entries" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card" role="region" aria-labelledby="creencias-title">
+          <h2 id="creencias-title">Transformação de Crenças</h2>
+          <p class="muted">Liste crenças limitantes e suas versões empoderadoras.</p>
+          <form id="beliefForm" style="display:grid;gap:8px">
+            <input type="text" id="beliefOld" placeholder="Crença limitante" />
+            <input type="text" id="beliefOrigin" placeholder="Origem (opcional)" />
+            <input type="text" id="beliefNew" placeholder="Crença oposta empoderadora" />
+            <div style="display:flex;gap:8px">
+              <button type="button" id="saveBelief">Adicionar</button>
+              <button type="button" id="clearBeliefs" class="ghost">Limpar lista</button>
+            </div>
+          </form>
+          <ul id="beliefList" style="margin-top:10px"></ul>
+        </div>
+
+      </section>
+
+      <!-- side column -->
+      <aside>
+        <div class="card" role="region" aria-labelledby="habits-title">
+          <h2 id="habits-title">Controle de Hábitos</h2>
+          <p class="muted">Marque os hábitos diários e acompanhe progresso.</p>
+          <table aria-describedby="habits-title">
+            <thead>
+              <tr><th>Data</th><th>Estudo</th><th>Visualização</th><th>Meditação</th><th>V.A.V.I</th></tr>
+            </thead>
+            <tbody id="habitsTable">
+              <!-- rows via JS -->
+            </tbody>
+          </table>
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <input type="date" id="habitDate" />
+            <button id="addHabit" class="ghost">Adicionar</button>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="card" role="region" aria-labelledby="library-title">
+          <h2 id="library-title">Biblioteca & Mentores</h2>
+          <p class="muted">Livros, criadores e vídeos recomendados.</p>
+          <ul>
+            <li><strong>Livros:</strong> O Caibalion; O Poder do Subconsciente; A Cabala Mística; O Universo Autoconsciente; Peça e Será Atendido; Tao da Física.</li>
+            <li><strong>Criadores:</strong> Hélio Couto; Matheus Cantizani; Caciano Compostela; Joe Dispenza; Amit Goswami; Deepak Chopra.</li>
+            <li><strong>Vídeos:</strong> Experimento da dupla fenda; Leis Herméticas; Aulas de manifestação.</li>
+          </ul>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="card" role="region" aria-labelledby="manifest-title">
+          <h2 id="manifest-title">Painel de Manifestações</h2>
+          <p class="muted">Acompanhe suas intenções e resultados.</p>
+          <form id="manifestForm" style="display:grid;gap:8px">
+            <input type="text" id="manifestGoal" placeholder="Manifestação (descrição curta)" />
+            <input type="date" id="manifestDate" />
+            <div style="display:flex;gap:8px"><button id="saveManifest">Salvar</button><button id="clearManifest" class="ghost">Limpar</button></div>
+          </form>
+          <ul id="manifestList" style="margin-top:10px"></ul>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="card" role="region" aria-labelledby="routine-title">
+          <h2 id="routine-title">Rotina Diária</h2>
+          <p class="muted">Ritual simples para manter consistência.</p>
+          <div class="pill">5 min visualização • 5 min meditação • 1 afirmação • 1 ato inspirado • 1 reflexão</div>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer>
+      Template moderno para estudos quânticos — use localStorage para salvar seus dados no navegador. Export/Import para manter backup. Desenvolvido para ser simples, acessível e SEO-friendly.
+    </footer>
+  </main>
+
+  <script>
+    /***** Client-side data handling *****/
+    const defaultWeeks = [
+      {title:'Semana 1 — Fundamentos da Realidade', tasks:[
+        'Ler: O Caibalion — Cap. 1–2', 'Vídeo: Hélio Couto — Consciência', 'Vídeo: Matheus Cantizani — Aula completa', 'Meditação de 10 min', 'Exercício: Auto-observação' ]},
+      {title:'Semana 2 — Física Quântica Aplicada', tasks:['Ler: O Universo Autoconsciente (Amit Goswami)','Vídeo: Experimento da dupla fenda','Exercício: Observador consciente']},
+      {title:'Semana 3 — Lei da Atração + V.A.V.I', tasks:['Ler: Peça e Será Atendido','Criar 3 afirmações','Visualização diária 5 min','Vídeo: Cantizani – Manifestação Consciente']},
+      {title:'Semana 4 — Leis Herméticas Profundas', tasks:['Ler: Caibalion (Mentalismo, Correspondência, Vibração)','Vídeo: Leis Herméticas explicadas','Exercício: Mudança vibracional 3x ao dia']},
+      {title:'Semana 5 — Crenças Limitantes', tasks:['Ler: O Poder do Subconsciente','Listar minhas crenças limitantes','Reprogramação noturna (5 min)']},
+      {title:'Semana 6 — Manifestação Real', tasks:['Escolher 1 manifestação pequena','Aplicar V.A.V.I diariamente','Registrar sinais do universo']},
+      {title:'Semana 7 — Consciência & Propósito', tasks:['Ler: A Cabala Mística','Meditação de propósito (10 min)','Escrever: Quem quero me tornar?']},
+      {title:'Semana 8 — Integração e Maestria', tasks:['Criar minha rotina espiritual','Revisar progressos','Ajustar vibração dominante']}
+    ];
+
+    const STORAGE_KEY = 'quantum_dashboard_v1';
+
+    // utility
+    function qs(sel, root=document){return root.querySelector(sel)}
+    function qsa(sel, root=document){return Array.from(root.querySelectorAll(sel))}
+
+    // initialize checklist
+    function renderChecklist(data){
+      const el = qs('#checklist'); el.innerHTML='';
+      data.forEach((week,wi)=>{
+        const w = document.createElement('div'); w.className='week';
+        const h = document.createElement('h3'); h.textContent=week.title; h.style.margin='0 0 8px 0'; h.style.fontSize='15px';
+        w.appendChild(h);
+        week.tasks.forEach((task,ti)=>{
+          const row = document.createElement('div'); row.className='task';
+          const id = `w${wi}t${ti}`;
+          const cb = document.createElement('input'); cb.type='checkbox'; cb.id=id; cb.checked = !!(week.done && week.done[ti]);
+          cb.addEventListener('change', ()=>{saveState();});
+          const label = document.createElement('label'); label.htmlFor=id; label.textContent=task;
+          row.appendChild(cb); row.appendChild(label); w.appendChild(row);
+        });
+        el.appendChild(w);
+      });
+    }
+
+    // diary handling
+    function renderEntries(entries){
+      const out = qs('#entries'); out.innerHTML='';
+      if(!entries || entries.length===0){ out.innerHTML='<div class="muted mini">Nenhuma entrada ainda.</div>'; return }
+      entries.slice().reverse().forEach(e=>{
+        const d = document.createElement('div'); d.className='week'; d.style.marginBottom='8px';
+        d.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;"><strong>${e.date}</strong><span class="mini">${e.vibe||''}</span></div>
+          <div style="margin-top:6px;font-size:14px">${escapeHtml(e.study||'')}</div>
+          <div class="mini" style="margin-top:6px;color:var(--muted)"><strong>Manifestou:</strong> ${escapeHtml(e.manifest||'')} • <strong>Sinais:</strong> ${escapeHtml(e.signs||'')}</div>
+          <div class="mini" style="margin-top:6px;color:var(--muted)"><strong>Intenção:</strong> ${escapeHtml(e.intent||'')}</div>
+          <div style="margin-top:8px;display:flex;gap:8px"><button class="ghost" onclick='deleteEntry("${e.id}")'>Excluir</button></div>`;
+        out.appendChild(d);
+      });
+    }
+
+    // beliefs
+    function renderBeliefs(list){
+      const ul = qs('#beliefList'); ul.innerHTML='';
+      list.forEach((b,idx)=>{
+        const li = document.createElement('li'); li.innerHTML = `<strong>${escapeHtml(b.old)}</strong> — <em>${escapeHtml(b.origin||'')}</em><div class="mini">→ ${escapeHtml(b.new)}</div><div style="margin-top:6px"><button class="ghost" onclick='removeBelief(${idx})'>Remover</button></div>`;
+        ul.appendChild(li);
+      });
+    }
+
+    // manifests
+    function renderManifests(list){
+      const ul = qs('#manifestList'); ul.innerHTML='';
+      list.forEach((m,idx)=>{
+        const li = document.createElement('li'); li.innerHTML = `<strong>${escapeHtml(m.goal)}</strong> <span class="mini">${m.date||''}</span><div style="margin-top:6px"><button class="ghost" onclick='removeManifest(${idx})'>Remover</button></div>`;
+        ul.appendChild(li);
+      });
+    }
+
+    // habits
+    function renderHabits(list){
+      const tb = qs('#habitsTable'); tb.innerHTML='';
+      list.slice().reverse().forEach(h=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${h.date}</td><td>${h.study? '✔️':''}</td><td>${h.visual? '✔️':''}</td><td>${h.medit? '✔️':''}</td><td>${h.vavi? '✔️':''}</td>`;
+        tb.appendChild(tr);
+      });
+    }
+
+    // escape html
+    function escapeHtml(s){ if(!s) return ''; return s.replaceAll && s.replaceAll('<','&lt;').replaceAll('>','&gt;')}
+
+    // load/save state
+    function loadState(){
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return null;
+      try{ return JSON.parse(raw) }catch(e){return null}
+    }
+    function saveState(){
+      const state = window.APP_STATE || {};
+      // capture checkboxes
+      const weeks = qsa('#checklist .week');
+      state.weeks = defaultWeeks.map((w,wi)=>{
+        const done = Array.from(weeks[wi].querySelectorAll('input[type=checkbox]')).map(cb=>cb.checked);
+        return {...w,done}
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function init(){
+      let state = loadState();
+      if(!state){ state = {weeks:defaultWeeks,entries:[],beliefs:[],manifests:[],habits:[]} }
+      window.APP_STATE = state;
+      renderChecklist(state.weeks);
+      renderEntries(state.entries);
+      renderBeliefs(state.beliefs);
+      renderManifests(state.manifests);
+      renderHabits(state.habits);
+
+      // set date input default
+      qs('#diaryDate').value = new Date().toISOString().slice(0,10);
+
+      // form listeners
+      qs('#diaryForm').addEventListener('submit', e=>{
+        e.preventDefault(); const id = 'e'+Date.now();
+        const entry = {id,date:qs('#diaryDate').value,study:qs('#diaryStudy').value,insight:qs('#diaryInsight').value,vibe:qs('#diaryVibe').value,manifest:qs('#diaryManifest').value,signs:qs('#diarySigns').value,intent:qs('#diaryIntent').value};
+        state.entries = state.entries || []; state.entries.push(entry); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderEntries(state.entries); qs('#diaryForm').reset(); qs('#diaryDate').value=new Date().toISOString().slice(0,10);
+      });
+
+      qs('#addQuick').addEventListener('click', ()=>{
+        const id='e'+Date.now(); const e = {id,date:qs('#diaryDate').value,study:qs('#diaryStudy').value||'Estudo rápido',insight:qs('#diaryInsight').value||'',vibe:qs('#diaryVibe').value||'',manifest:qs('#diaryManifest').value||'',signs:qs('#diarySigns').value||'',intent:qs('#diaryIntent').value||''};
+        state.entries = state.entries || []; state.entries.push(e); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderEntries(state.entries); qs('#diaryForm').reset(); qs('#diaryDate').value=new Date().toISOString().slice(0,10);
+      });
+
+      qs('#saveBelief').addEventListener('click', ()=>{
+        const b = {old:qs('#beliefOld').value,origin:qs('#beliefOrigin').value,new:qs('#beliefNew').value};
+        if(!b.old) return alert('Informe a crença limitante'); state.beliefs = state.beliefs||[]; state.beliefs.push(b); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderBeliefs(state.beliefs); qs('#beliefForm').reset();
+      });
+      window.removeBelief = function(i){ state.beliefs.splice(i,1); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderBeliefs(state.beliefs); }
+      window.removeBelief = (i)=>{ state.beliefs.splice(i,1); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderBeliefs(state.beliefs); }
+      qs('#clearBeliefs').addEventListener('click', ()=>{ if(confirm('Limpar todas as crenças?')){ state.beliefs=[]; localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderBeliefs(state.beliefs);} });
+
+      qs('#saveManifest').addEventListener('click', ()=>{
+        const m = {goal:qs('#manifestGoal').value,date:qs('#manifestDate').value}; if(!m.goal) return alert('Descreva a manifestação'); state.manifests=state.manifests||[]; state.manifests.push(m); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderManifests(state.manifests); qs('#manifestForm').reset();
+      });
+      window.removeManifest = (i)=>{ state.manifests.splice(i,1); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderManifests(state.manifests); }
+      qs('#clearManifest').addEventListener('click', ()=>{ if(confirm('Limpar manifestações?')){ state.manifests=[]; localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderManifests(state.manifests);} });
+
+      qs('#addHabit').addEventListener('click', ()=>{
+        const date = qs('#habitDate').value; if(!date) return alert('Escolha uma data'); const row = {date,study:false,visual:false,medit:false,vavi:false}; state.habits = state.habits||[]; state.habits.push(row); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderHabits(state.habits); qs('#habitDate').value='';
+      });
+
+      // export/import/clear
+      qs('#exportBtn').addEventListener('click', ()=>{
+        const dataStr = JSON.stringify(state, null, 2); const blob = new Blob([dataStr], {type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='quantum-dashboard-backup.json'; a.click(); URL.revokeObjectURL(url);
+      });
+      qs('#importBtn').addEventListener('click', ()=>{
+        const inp = document.createElement('input'); inp.type='file'; inp.accept='application/json'; inp.onchange = ()=>{ const f=inp.files[0]; if(!f) return; const reader=new FileReader(); reader.onload = (ev)=>{ try{ const d = JSON.parse(ev.target.result); window.APP_STATE = d; localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); init(); alert('Importado com sucesso'); }catch(e){alert('Arquivo inválido')} }; reader.readAsText(f); }; inp.click();
+      });
+      qs('#clearBtn').addEventListener('click', ()=>{ if(confirm('Limpar todos os dados locais? Esta ação não pode ser desfeita.')){ localStorage.removeItem(STORAGE_KEY); location.reload(); } });
+
+      // delete entry
+      window.deleteEntry = (id)=>{ state.entries = state.entries.filter(x=>x.id!==id); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderEntries(state.entries); }
+
+      // save initial checklist state
+      saveState();
+    }
+
+    // init on load
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
