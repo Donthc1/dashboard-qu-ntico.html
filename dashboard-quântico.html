@@ -5,40 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Dashboard Quântico — Cronograma de Estudos & Diário de Manifestação</title>
-  <meta name="description" content="Template moderno para organizar seus estudos sobre física quântica, Hermetismo, Lei da Atração, V.A.V.I e práticas de manifestação. Cronograma de 8 semanas, diário diário, controle de hábitos e painel de manifestações." />
+  <meta name="description" content="Template moderno e pronto para hospedar: organize seus estudos sobre física quântica, Hermetismo, Lei da Atração, V.A.V.I e práticas de manifestação. Cronograma de 8 semanas, diário, rastreador de hábitos, painel de manifestações e automações client-side." />
   <meta name="keywords" content="física quântica, lei da atração, hermetismo, V.A.V.I, diário quântico, manifestação, cronograma de estudos, produtividade, Notion template" />
-  <link rel="canonical" href="https://example.com/quantum-studies-dashboard">
+  <link rel="canonical" href="https://seusite.com/quantum-studies-dashboard">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Dashboard Quântico — Cronograma de Estudos & Diário de Manifestação" />
-  <meta property="og:description" content="Template moderno para organizar seus estudos sobre física quântica, Hermetismo, Lei da Atração e práticas de manifestação com rotina diária e rastreador de hábitos." />
+  <meta property="og:description" content="Template moderno para organizar seus estudos sobre física quântica, Hermetismo, Lei da Atração e práticas de manifestação com rotina diária e automações." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://seusite.com/quantum-studies-dashboard" />
+  <meta property="og:image" content="https://seusite.com/assets/og-quantum-dashboard.png" />
 
   <!-- Structured data (JSON-LD) -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"Dashboard Quântico","description":"Template moderno para organizar estudos sobre física quântica, Hermetismo e manifestação.","inLanguage":"pt-BR"}
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Dashboard Quântico",
+    "description":"Template moderno e pronto para hospedar: organize estudos sobre física quântica, Hermetismo e manifestação com automações client-side.",
+    "inLanguage":"pt-BR",
+    "publisher": { "@type": "Organization", "name": "Seu Nome ou Marca" }
+  }
   </script>
+
+  <!-- Manifest for PWA-ish behaviour -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Modern minimal CSS -->
   <style>
     :root{
-      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c5cff; --glass:rgba(255,255,255,0.04);
-      --glass-2:rgba(255,255,255,0.02); --radius:14px; --gap:18px;
-      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c5cff; --accent-2:#34d1bf; --glass:rgba(255,255,255,0.04);
+      --glass-2:rgba(255,255,255,0.02); --radius:12px; --gap:16px; --max-width:1200px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;background:linear-gradient(180deg,#071021 0%, #071024 60%);color:#e6eef8}
     a{color:var(--accent)}
-    header{padding:28px 36px;display:flex;align-items:center;gap:18px}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#34d1bf);display:flex;align-items:center;justify-content:center;font-weight:700;color:#051025}
-    .title{font-size:20px;font-weight:700}
+    header{padding:22px 28px;display:flex;align-items:center;gap:14px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#051025}
+    .title{font-size:18px;font-weight:700}
     .subtitle{color:var(--muted);font-size:13px}
 
-    .container{max-width:1100px;margin:22px auto;padding:20px}
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:var(--gap)}
+    .container{max-width:var(--max-width);margin:18px auto;padding:18px}
+    .grid{display:grid;grid-template-columns:1fr 380px;gap:var(--gap)}
 
-    .card{background:linear-gradient(180deg,var(--card), rgba(11,18,32,0.7));padding:18px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(2,6,23,0.6);}
+    .card{background:linear-gradient(180deg,var(--card), rgba(11,18,32,0.7));padding:16px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(2,6,23,0.6);}
     .card h2{margin:0 0 8px 0;font-size:16px}
     .muted{color:var(--muted);font-size:13px}
 
@@ -51,8 +66,8 @@
 
     /* diary */
     form .row{display:flex;gap:12px}
-    input[type=text],textarea,select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    textarea{min-height:90px;resize:vertical}
+    input[type=text],textarea,select,input[type=date]{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    textarea{min-height:100px;resize:vertical}
     .actions{display:flex;gap:8px;align-items:center}
     button{background:var(--accent);color:#051025;padding:10px 12px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
     button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent)}
@@ -61,16 +76,16 @@
     table{width:100%;border-collapse:collapse}
     th,td{padding:8px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.03);font-size:13px}
 
-    /* responsive */
-    @media (max-width:1000px){.grid{grid-template-columns:1fr;}.container{padding:12px}}
+    /* progress */
+    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden}
+    .bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0%}
 
-    /* small helpers */
+    /* responsive */
+    @media (max-width:980px){.grid{grid-template-columns:1fr;}.container{padding:12px}}
+
     .mini{font-size:12px;color:var(--muted)}
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--glass-2);font-size:13px}
-
-    /* saves */
     .top-actions{display:flex;gap:10px;margin-left:auto}
-
     footer{margin-top:18px;padding:20px;text-align:center;color:var(--muted);font-size:13px}
   </style>
 </head>
@@ -79,7 +94,7 @@
     <div class="logo" aria-hidden>Q</div>
     <div>
       <div class="title">Dashboard Quântico — Estudos & Manifestação</div>
-      <div class="subtitle">Cronograma moderno, diário, rastreador de hábitos e painel de manifestações</div>
+      <div class="subtitle">Pronto para hospedar. Automação client-side, backup e notificações.</div>
     </div>
     <div class="top-actions" style="margin-left:auto">
       <button id="exportBtn" title="Exportar dados">Exportar</button>
@@ -94,22 +109,30 @@
       <section>
         <div class="card" role="region" aria-labelledby="cronograma-title">
           <h2 id="cronograma-title">Cronograma de Estudos — 8 Semanas</h2>
-          <p class="muted">Siga a progressão semanal. Marque as tarefas concluídas.</p>
+          <p class="muted">Progresso geral: <span id="progressPerc">0%</span></p>
+          <div class="progress" style="margin-top:8px"><div class="bar" id="progressBar"></div></div>
+          <div style="height:12px"></div>
 
           <div class="checklist" id="checklist">
             <!-- weeks populated by JS -->
           </div>
         </div>
 
-        <div style="height:18px"></div>
+        <div style="height:16px"></div>
 
         <div class="card" role="region" aria-labelledby="diario-title">
           <h2 id="diario-title">Diário Quântico — Registro Diário</h2>
-          <p class="muted">Registre insights, vibração, sinais e intenções (salvo localmente no seu navegador).</p>
+          <p class="muted">Automação: crie entrada do dia com 1 clique; rascunho automático; lembrete diário via notificações (se permitido).</p>
+
+          <div style="display:flex;gap:8px;margin-bottom:10px">
+            <button id="newToday">Nova entrada de hoje</button>
+            <button id="autoCreate" class="ghost">Habilitar criação automática ao abrir</button>
+            <button id="setReminder" class="ghost">Configurar lembrete diário</button>
+          </div>
 
           <form id="diaryForm">
             <div class="row">
-              <input type="text" id="diaryDate" aria-label="Data" required />
+              <input type="date" id="diaryDate" aria-label="Data" required />
             </div>
             <div class="row" style="margin-top:10px">
               <textarea id="diaryStudy" placeholder="O que estudei hoje..."></textarea>
@@ -129,6 +152,7 @@
             <div class="actions" style="margin-top:12px">
               <button type="submit">Salvar Entrada</button>
               <button type="button" id="addQuick" class="ghost">Salvar Rápido (3 linhas)</button>
+              <button type="button" id="downloadDay" class="ghost">Baixar PDF do Dia</button>
             </div>
           </form>
 
@@ -138,7 +162,7 @@
           </div>
         </div>
 
-        <div style="height:18px"></div>
+        <div style="height:16px"></div>
 
         <div class="card" role="region" aria-labelledby="creencias-title">
           <h2 id="creencias-title">Transformação de Crenças</h2>
@@ -213,12 +237,12 @@
     </div>
 
     <footer>
-      Template moderno para estudos quânticos — use localStorage para salvar seus dados no navegador. Export/Import para manter backup. Desenvolvido para ser simples, acessível e SEO-friendly.
+      Template pronto para hospedagem — inclua também <code>/manifest.json</code> e um pequeno <code>/og-quantum-dashboard.png</code> para melhor compartilhamento. Export/Import para backup. Desenvolvido para ser simples, acessível e SEO-friendly.
     </footer>
   </main>
 
   <script>
-    /***** Client-side data handling *****/
+    /***** Client-side data handling & automations *****/
     const defaultWeeks = [
       {title:'Semana 1 — Fundamentos da Realidade', tasks:[
         'Ler: O Caibalion — Cap. 1–2', 'Vídeo: Hélio Couto — Consciência', 'Vídeo: Matheus Cantizani — Aula completa', 'Meditação de 10 min', 'Exercício: Auto-observação' ]},
@@ -231,7 +255,7 @@
       {title:'Semana 8 — Integração e Maestria', tasks:['Criar minha rotina espiritual','Revisar progressos','Ajustar vibração dominante']}
     ];
 
-    const STORAGE_KEY = 'quantum_dashboard_v1';
+    const STORAGE_KEY = 'quantum_dashboard_v2';
 
     // utility
     function qs(sel, root=document){return root.querySelector(sel)}
@@ -248,12 +272,21 @@
           const row = document.createElement('div'); row.className='task';
           const id = `w${wi}t${ti}`;
           const cb = document.createElement('input'); cb.type='checkbox'; cb.id=id; cb.checked = !!(week.done && week.done[ti]);
-          cb.addEventListener('change', ()=>{saveState();});
+          cb.addEventListener('change', ()=>{ saveState(); updateProgress(); });
           const label = document.createElement('label'); label.htmlFor=id; label.textContent=task;
           row.appendChild(cb); row.appendChild(label); w.appendChild(row);
         });
         el.appendChild(w);
       });
+    }
+
+    // progress
+    function updateProgress(){
+      const weeks = qsa('#checklist .week');
+      let total=0, done=0;
+      weeks.forEach(w=>{ const cbs = w.querySelectorAll('input[type=checkbox]'); total += cbs.length; cbs.forEach(cb=>{ if(cb.checked) done++; }); });
+      const pct = total? Math.round((done/total)*100) : 0;
+      qs('#progressPerc').textContent = pct+'%'; qs('#progressBar').style.width = pct+'%';
     }
 
     // diary handling
@@ -266,7 +299,7 @@
           <div style="margin-top:6px;font-size:14px">${escapeHtml(e.study||'')}</div>
           <div class="mini" style="margin-top:6px;color:var(--muted)"><strong>Manifestou:</strong> ${escapeHtml(e.manifest||'')} • <strong>Sinais:</strong> ${escapeHtml(e.signs||'')}</div>
           <div class="mini" style="margin-top:6px;color:var(--muted)"><strong>Intenção:</strong> ${escapeHtml(e.intent||'')}</div>
-          <div style="margin-top:8px;display:flex;gap:8px"><button class="ghost" onclick='deleteEntry("${e.id}")'>Excluir</button></div>`;
+          <div style="margin-top:8px;display:flex;gap:8px"><button class="ghost" onclick='deleteEntry("${e.id}")'>Excluir</button><button class="ghost" onclick='downloadEntry("${e.id}")'>Baixar</button></div>`;
         out.appendChild(d);
       });
     }
@@ -319,6 +352,46 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
+    // notifications
+    function requestNotificationPermission(){
+      if(!('Notification' in window)) return alert('Notificações não são suportadas neste navegador.');
+      Notification.requestPermission().then(p=>{ if(p==='granted') alert('Permissão concedida. Você poderá receber lembretes diários enquanto a aba estiver aberta.'); else alert('Permissão negada.'); });
+    }
+    function scheduleDailyReminder(timeStr){
+      // timeStr: HH:MM in 24h
+      localStorage.setItem('quantum_reminder', timeStr);
+      if(Notification.permission==='granted'){
+        clearInterval(window._reminderInterval);
+        window._reminderInterval = setInterval(()=>{
+          const now = new Date(); const hh = String(now.getHours()).padStart(2,'0'); const mm = String(now.getMinutes()).padStart(2,'0');
+          if(`${hh}:${mm}`===timeStr){ new Notification('Lembrete Diário — Diário Quântico', {body:'Hora de registrar seu estudo e prática diária.'}); }
+        }, 60000);
+        alert('Lembrete programado para ' + timeStr + '. (A aba deve estar aberta para disparar)');
+      } else { alert('Permissão de notificação não concedida. Habilite-a primeiro.') }
+    }
+
+    // download single entry
+    function downloadEntry(id){ const state = window.APP_STATE||{}; const e = state.entries.find(x=>x.id===id); if(!e) return; const text = `Data: ${e.date}
+Vibração: ${e.vibe}
+Estudo: ${e.study}
+Insight: ${e.insight}
+Manifestação: ${e.manifest}
+Sinais: ${e.signs}
+Intenção: ${e.intent}`; const blob = new Blob([text],{type:'text/plain'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=`diario-${e.date}.txt`; a.click(); URL.revokeObjectURL(url); }
+
+    // delete entry
+    function deleteEntry(id){ const state=window.APP_STATE||{}; state.entries = state.entries.filter(x=>x.id!==id); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderEntries(state.entries); }
+
+    // manifests/habits remove
+    function removeManifest(i){ const state=window.APP_STATE||{}; state.manifests.splice(i,1); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderManifests(state.manifests); }
+    function removeBelief(i){ const state=window.APP_STATE||{}; state.beliefs.splice(i,1); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderBeliefs(state.beliefs); }
+
+    // auto-draft for form
+    function restoreDraft(){ const draft = localStorage.getItem('quantum_diary_draft'); if(!draft) return; try{ const d = JSON.parse(draft); qs('#diaryDate').value=d.date||new Date().toISOString().slice(0,10); qs('#diaryStudy').value=d.study||''; qs('#diaryInsight').value=d.insight||''; qs('#diaryVibe').value=d.vibe||''; qs('#diaryManifest').value=d.manifest||''; qs('#diarySigns').value=d.signs||''; qs('#diaryIntent').value=d.intent||''; }catch(e){}
+    }
+    function saveDraft(){ const d = {date:qs('#diaryDate').value,study:qs('#diaryStudy').value,insight:qs('#diaryInsight').value,vibe:qs('#diaryVibe').value,manifest:qs('#diaryManifest').value,signs:qs('#diarySigns').value,intent:qs('#diaryIntent').value}; localStorage.setItem('quantum_diary_draft', JSON.stringify(d)); }
+
+    // init
     function init(){
       let state = loadState();
       if(!state){ state = {weeks:defaultWeeks,entries:[],beliefs:[],manifests:[],habits:[]} }
@@ -328,34 +401,50 @@
       renderBeliefs(state.beliefs);
       renderManifests(state.manifests);
       renderHabits(state.habits);
+      updateProgress();
 
       // set date input default
       qs('#diaryDate').value = new Date().toISOString().slice(0,10);
+      restoreDraft();
+
+      // auto-create when enabled
+      if(localStorage.getItem('quantum_auto_create')==='true'){
+        createTodayEntryIfMissing(); qs('#autoCreate').classList.add('active'); qs('#autoCreate').textContent='Criação automática: ON';
+      }
+
+      // set reminder interval if present and permission granted
+      const rem = localStorage.getItem('quantum_reminder'); if(rem && Notification.permission==='granted'){
+        scheduleDailyReminder(rem);
+      }
 
       // form listeners
       qs('#diaryForm').addEventListener('submit', e=>{
         e.preventDefault(); const id = 'e'+Date.now();
         const entry = {id,date:qs('#diaryDate').value,study:qs('#diaryStudy').value,insight:qs('#diaryInsight').value,vibe:qs('#diaryVibe').value,manifest:qs('#diaryManifest').value,signs:qs('#diarySigns').value,intent:qs('#diaryIntent').value};
-        state.entries = state.entries || []; state.entries.push(entry); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderEntries(state.entries); qs('#diaryForm').reset(); qs('#diaryDate').value=new Date().toISOString().slice(0,10);
+        state.entries = state.entries || []; state.entries.push(entry); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderEntries(state.entries); qs('#diaryForm').reset(); qs('#diaryDate').value=new Date().toISOString().slice(0,10); localStorage.removeItem('quantum_diary_draft');
+      });
+
+      // auto-save draft on input
+      ['#diaryStudy','#diaryInsight','#diaryVibe','#diaryManifest','#diarySigns','#diaryIntent','#diaryDate'].forEach(sel=>{
+        qs(sel).addEventListener('input', ()=>{ saveDraft(); });
       });
 
       qs('#addQuick').addEventListener('click', ()=>{
         const id='e'+Date.now(); const e = {id,date:qs('#diaryDate').value,study:qs('#diaryStudy').value||'Estudo rápido',insight:qs('#diaryInsight').value||'',vibe:qs('#diaryVibe').value||'',manifest:qs('#diaryManifest').value||'',signs:qs('#diarySigns').value||'',intent:qs('#diaryIntent').value||''};
-        state.entries = state.entries || []; state.entries.push(e); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderEntries(state.entries); qs('#diaryForm').reset(); qs('#diaryDate').value=new Date().toISOString().slice(0,10);
+        state.entries = state.entries || []; state.entries.push(e); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderEntries(state.entries); qs('#diaryForm').reset(); qs('#diaryDate').value=new Date().toISOString().slice(0,10); localStorage.removeItem('quantum_diary_draft');
       });
 
       qs('#saveBelief').addEventListener('click', ()=>{
         const b = {old:qs('#beliefOld').value,origin:qs('#beliefOrigin').value,new:qs('#beliefNew').value};
         if(!b.old) return alert('Informe a crença limitante'); state.beliefs = state.beliefs||[]; state.beliefs.push(b); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderBeliefs(state.beliefs); qs('#beliefForm').reset();
       });
-      window.removeBelief = function(i){ state.beliefs.splice(i,1); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderBeliefs(state.beliefs); }
-      window.removeBelief = (i)=>{ state.beliefs.splice(i,1); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderBeliefs(state.beliefs); }
+      window.removeBelief = removeBelief;
       qs('#clearBeliefs').addEventListener('click', ()=>{ if(confirm('Limpar todas as crenças?')){ state.beliefs=[]; localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderBeliefs(state.beliefs);} });
 
       qs('#saveManifest').addEventListener('click', ()=>{
         const m = {goal:qs('#manifestGoal').value,date:qs('#manifestDate').value}; if(!m.goal) return alert('Descreva a manifestação'); state.manifests=state.manifests||[]; state.manifests.push(m); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderManifests(state.manifests); qs('#manifestForm').reset();
       });
-      window.removeManifest = (i)=>{ state.manifests.splice(i,1); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderManifests(state.manifests); }
+      window.removeManifest = removeManifest;
       qs('#clearManifest').addEventListener('click', ()=>{ if(confirm('Limpar manifestações?')){ state.manifests=[]; localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderManifests(state.manifests);} });
 
       qs('#addHabit').addEventListener('click', ()=>{
@@ -369,17 +458,41 @@
       qs('#importBtn').addEventListener('click', ()=>{
         const inp = document.createElement('input'); inp.type='file'; inp.accept='application/json'; inp.onchange = ()=>{ const f=inp.files[0]; if(!f) return; const reader=new FileReader(); reader.onload = (ev)=>{ try{ const d = JSON.parse(ev.target.result); window.APP_STATE = d; localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); init(); alert('Importado com sucesso'); }catch(e){alert('Arquivo inválido')} }; reader.readAsText(f); }; inp.click();
       });
-      qs('#clearBtn').addEventListener('click', ()=>{ if(confirm('Limpar todos os dados locais? Esta ação não pode ser desfeita.')){ localStorage.removeItem(STORAGE_KEY); location.reload(); } });
+      qs('#clearBtn').addEventListener('click', ()=>{ if(confirm('Limpar todos os dados locais? Esta ação não pode ser desfeita.')){ localStorage.removeItem(STORAGE_KEY); localStorage.removeItem('quantum_diary_draft'); localStorage.removeItem('quantum_auto_create'); localStorage.removeItem('quantum_reminder'); location.reload(); } });
 
-      // delete entry
-      window.deleteEntry = (id)=>{ state.entries = state.entries.filter(x=>x.id!==id); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderEntries(state.entries); }
+      // new today
+      qs('#newToday').addEventListener('click', ()=>{ createTodayEntry(); });
+      qs('#autoCreate').addEventListener('click', ()=>{ const cur = localStorage.getItem('quantum_auto_create')==='true'; localStorage.setItem('quantum_auto_create', !cur); qs('#autoCreate').textContent = !cur ? 'Criação automática: ON' : 'Habilitar criação automática ao abrir'; if(!cur){ createTodayEntryIfMissing(); } });
+
+      qs('#setReminder').addEventListener('click', ()=>{
+        requestNotificationPermission(); const time = prompt('Horário diário para lembrar (HH:MM, 24h). Ex: 21:00'); if(time){ scheduleDailyReminder(time); }
+      });
+
+      qs('#downloadDay').addEventListener('click', ()=>{ // simple text download of current draft/entry
+        const d = {date:qs('#diaryDate').value,study:qs('#diaryStudy').value,insight:qs('#diaryInsight').value,vibe:qs('#diaryVibe').value,manifest:qs('#diaryManifest').value,signs:qs('#diarySigns').value,intent:qs('#diaryIntent').value}; const text=`Data: ${d.date}
+Vibração: ${d.vibe}
+Estudo: ${d.study}
+Insight: ${d.insight}
+Manifestação: ${d.manifest}
+Sinais: ${d.signs}
+Intenção: ${d.intent}`; const blob = new Blob([text],{type:'text/plain'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=`diario-${d.date}.txt`; a.click(); URL.revokeObjectURL(url);
+      });
+
+      // keyboard shortcut: N to create new today
+      document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='n' && e.ctrlKey){ e.preventDefault(); createTodayEntry(); } });
 
       // save initial checklist state
       saveState();
     }
 
+    function createTodayEntry(){ const state=window.APP_STATE||{}; const today = new Date().toISOString().slice(0,10); const id='e'+Date.now(); const entry = {id,date:today,study:'',insight:'',vibe:'',manifest:'',signs:'',intent:''}; state.entries = state.entries || []; state.entries.push(entry); localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderEntries(state.entries); }
+    function createTodayEntryIfMissing(){ const state=window.APP_STATE||{}; const today = new Date().toISOString().slice(0,10); const exists = (state.entries||[]).some(e=>e.date===today); if(!exists){ createTodayEntry(); } }
+
     // init on load
     document.addEventListener('DOMContentLoaded', init);
+
+    // friendly note for hosting
+    console.log('Dashboard Quântico pronto — hospedagem sugerida: serviços estáticos (Netlify, Vercel, GitHub Pages). Inclua /manifest.json e imagens OG para melhor compartilhamento.');
   </script>
 </body>
 </html>
